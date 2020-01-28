@@ -46,3 +46,20 @@ function indexAt(targetNode, collection, linkedList){
   }
   return i
 }
+
+function insertNodeAt(index, address, linkedList, collection){
+  let nodeBeforeNewNode = nodeAt(index-1, linkedList, collection)
+  let nodeAfterNewNode = nodeAt(index, linkedList, collection)
+  collection[address]["next"]=nodeBeforeNewNode["next"]
+  nodeBeforeNewNode["next"]=address
+  return collection
+}
+
+function deleteNodeAt(index, linkedList, collection){
+  let nodeBeforeNodeToDelete = nodeAt(index-1, linkedList, collection)
+  let addressofNodetoDelete = nodeBeforeNodeToDelete["next"]
+  let addressForPreviousNodeToPointTo = nodeAt(index, linkedList, collection)["next"]
+  nodeBeforeNodeToDelete["next"]= addressForPreviousNodeToPointTo
+  delete collection[addressofNodetoDelete]
+  return collection
+}
